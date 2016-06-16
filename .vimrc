@@ -49,27 +49,37 @@ set showcmd             " Show (partial) command in status line.
 "set hidden             " Hide buffers when they are abandoned
 set mouse=a             " Enable mouse usage (all modes)
 
+colorscheme Tomorrow-Night
+
 " Source a global configuration file if available
 
 if has("autocmd")
 	    autocmd! bufwritepost .vimrc source ~/.vimrc
 endif
-
+	
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
+"plugins manager
 execute pathogen#infect()
 
-map <C-n> :NERDTreeToggle<CR>set nocompatible
-
+"line number
 set number
-set smartindent
+set cursorline 
+set showmatch
+
+"keep on indent
 set autoindent
 set ruler
-colorscheme Tomorrow-Night
+
+" tab = 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+"raccourcis clavier personnalisés
 inoremap ( ()<left>
-inoremap { {}<left>
+inoremap { {<CR><CR>}<up><tab>
 inoremap [ []<left>
 inoremap " ""<left>
 inoremap ' ''<left>
